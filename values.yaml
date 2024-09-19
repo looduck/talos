@@ -4,21 +4,21 @@ cgroup:
   hostRoot: /sys/fs/cgroup
 envoy:
   enabled: true
-  prometheus:
-    serviceMonitor:
-      relabelings:
-        - sourceLabels:
-            - __meta_kubernetes_pod_node_name
-          targetLabel: node
-          replacement: ${1}
-          action: replace
+  # prometheus:
+  #   serviceMonitor:
+  #     relabelings:
+  #       - sourceLabels:
+  #           - __meta_kubernetes_pod_node_name
+  #         targetLabel: node
+  #         replacement: ${1}
+  #         action: replace
 hubble:
   enabled: true
   metrics:
-    enableOpenMetrics: true
-    dashboards:
-      enabled: true
-      namespace: monitoring
+    # enableOpenMetrics: true
+    # dashboards:
+    #   enabled: true
+    #   namespace: monitoring
     enabled:
     - dns:query;ignoreAAAA
     - drop:sourceContext=identity;destinationContext=identity
@@ -28,18 +28,18 @@ hubble:
     - icmp
     - httpV2:exemplars=true;labelsContext=source_ip,source_namespace,source_workload,destination_ip,destination_namespace,destination_workload,traffic_direction
     - kafka:sourceContext=workload-name|pod-name|reserved-identity;destinationContext=workload-name|pod-name|reserved-identity;labelsContext=source_namespace,destination_namespace,traffic_direction
-    enableOpenMetrics: true
-    serviceMonitor:
-      enabled: true
-      relabelings:
-        - sourceLabels:
-            - __meta_kubernetes_pod_node_name
-          targetLabel: node
-          replacement: ${1}
-          action: replace
-    dashboards:
-      enabled: true
-      namespace: monitoring
+    # enableOpenMetrics: true
+    # serviceMonitor:
+    #   enabled: true
+    #   relabelings:
+    #     - sourceLabels:
+    #         - __meta_kubernetes_pod_node_name
+    #       targetLabel: node
+    #       replacement: ${1}
+    #       action: replace
+    # dashboards:
+    #   enabled: true
+    #   namespace: monitoring
   relay:
     enabled: true
   tls:
@@ -58,21 +58,21 @@ k8sServicePort: 7445
 kubeProxyReplacement: true
 l2announcements:
   enabled: true
-operator:
-  prometheus:
-    enabled: true
-    serviceMonitor:
-      enabled: true
-prometheus:
-  enabled: true
-  serviceMonitor:
-    enabled: true
-    relabelings:
-      - sourceLabels:
-          - __meta_kubernetes_pod_node_name
-        targetLabel: node
-        replacement: ${1}
-        action: replace
+# operator:
+#   prometheus:
+#     enabled: true
+#     serviceMonitor:
+#       enabled: true
+# prometheus:
+#   enabled: true
+#   serviceMonitor:
+#     enabled: true
+#     relabelings:
+#       - sourceLabels:
+#           - __meta_kubernetes_pod_node_name
+#         targetLabel: node
+#         replacement: ${1}
+#         action: replace
 securityContext:
   capabilities:
     ciliumAgent:
